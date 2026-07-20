@@ -34,4 +34,4 @@ jobs:
 
           # Tailscale'i başlat ve login ol (auth key ile)
           # Aşağıdaki satırı kendi Tailscale auth key'inle değiştir
-          & "C:\Program Files\Tailscale\tailscale.exe" up --auth-key="tskey-tskey-auth-kJQaC64Aa311CNTRL-NMPDA4kf7n2WgpZ7AHuSn2nzBvEeGrvEW" --hostname="github-rdp"
+          & "C:\Program Files\Tailscale\tailscale.exe" up --auth-key="tskey-tskey-auth-tskey-auth-kjGK2Z4xJE11CNTRL-WbzgZUk6jqR8mutFCYE3rRLqDtQWiK2SP" --hostname="github-rdp"
