@@ -1,0 +1,31 @@
+name: Free Windows RDP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Create RDP User and Enable Access
+        shell: powershell
+        run: |
+          # Güçlü şifre oluştur
+          $Password = "RdpStrongPass2026!@#"
+          $SecurePassword = ConvertTo-SecureString $Password -AsPlainText -Force
+
+          # RDP kullanıcısı oluştur
+          New-LocalUser -Name "RDPUser" -Password $SecurePassword -AccountNeverExpires -UserMayNotChangePassword
+          Add-LocalGroupMember -Group "Administrators" -Member "RDPUser"
+
+          # RDP'yi etkinleştir
+          Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+
+          Write-Host "====================================="
+          Write-Host "RDP BAŞARIYLA KURULDU!"
+          Write-Host "Kullanıcı Adı : RDPUser"
+          Write-Host "Şifre         : RdpStrongPass2026!@#"
+          Write-Host "====================================="
+          Write-Host "IP Adresini öğrenmek için bir sonraki adıma geçin."
